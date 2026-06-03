@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pro Plan | Ray's Coaching</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Barlow',sans-serif;background:#0a0a0a;color:#fff;overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 2rem;height:64px;display:flex;align-items:center;justify-content:space-between;background:rgba(10,10,10,0.9);backdrop-filter:blur(12px);border-bottom:1px solid #1a1a1a}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:3px;color:#fff;text-decoration:none}
+.nav-logo span{color:#FF5000}
+.back-btn{display:inline-flex;align-items:center;gap:8px;color:#888;font-size:13px;text-decoration:none;text-transform:uppercase;letter-spacing:1px;transition:color 0.15s}
+.back-btn:hover{color:#FF5000}
+.hero{padding:8rem 1.5rem 4rem;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(255,80,0,0.15) 0%,transparent 70%)}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(255,80,0,0.1);border:1px solid rgba(255,80,0,0.25);border-radius:999px;padding:6px 16px;font-size:12px;color:#FF5000;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:1.5rem}
+.popular-badge{display:inline-block;background:#FF5000;color:#fff;font-size:11px;text-transform:uppercase;letter-spacing:1px;padding:4px 14px;border-radius:999px;margin-bottom:1rem;font-weight:600}
+.hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,10vw,88px);letter-spacing:4px;line-height:1;margin-bottom:1rem}
+.hero h1 span{color:#FF5000}
+.price-tag{font-family:'Bebas Neue',sans-serif;font-size:52px;color:#FF5000;letter-spacing:2px;margin-bottom:0.5rem}
+.price-tag small{font-size:22px;color:#888;font-family:'Barlow',sans-serif;letter-spacing:0}
+.hero-sub{font-size:16px;color:#888;max-width:500px;margin:0 auto;line-height:1.7}
+.divider{width:100%;height:1px;background:linear-gradient(90deg,transparent,#1e1e1e,transparent);margin:0}
+section{padding:4rem 1.5rem}
+.section-wrap{max-width:800px;margin:0 auto}
+.section-tag{font-family:'Bebas Neue',sans-serif;font-size:13px;color:#FF5000;letter-spacing:3px;margin-bottom:0.75rem}
+.section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(32px,5vw,48px);letter-spacing:3px;margin-bottom:1.5rem}
+.includes-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;margin-bottom:2rem}
+.include-card{background:#111;border:1px solid #1e1e1e;border-radius:12px;padding:1.5rem;position:relative;overflow:hidden}
+.include-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#FF5000,#ff8c00,transparent)}
+.include-icon{width:44px;height:44px;background:rgba(255,80,0,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem}
+.include-icon i{font-size:22px;color:#FF5000}
+.include-title{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:1.5px;margin-bottom:6px}
+.include-desc{font-size:13px;color:#888;line-height:1.6}
+.ideal-list{display:flex;flex-direction:column;gap:10px;margin-bottom:2rem}
+.ideal-item{display:flex;align-items:center;gap:12px;font-size:15px;color:#aaa;background:#111;border:1px solid #1e1e1e;border-radius:8px;padding:12px 16px}
+.ideal-item i{font-size:18px;color:#FF5000;flex-shrink:0}
+.cta-box{background:#111;border:1px solid rgba(255,80,0,0.3);border-radius:16px;padding:2.5rem;text-align:center;position:relative;overflow:hidden}
+.cta-box::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#FF5000,#ff8c00,transparent)}
+.cta-box h2{font-family:'Bebas Neue',sans-serif;font-size:36px;letter-spacing:3px;margin-bottom:8px}
+.cta-box p{font-size:15px;color:#888;margin-bottom:2rem;line-height:1.6}
+.cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn-pay{background:#FF5000;color:#fff;padding:14px 36px;border-radius:8px;font-size:14px;font-weight:600;text-decoration:none;text-transform:uppercase;letter-spacing:1.2px;transition:all 0.15s;box-shadow:0 4px 24px rgba(255,80,0,0.35);display:inline-flex;align-items:center;gap:8px}
+.btn-pay:hover{background:#e04500}
+.btn-enquire{background:transparent;color:#fff;padding:14px 36px;border-radius:8px;font-size:14px;font-weight:600;text-decoration:none;text-transform:uppercase;letter-spacing:1.2px;border:1px solid #2a2a2a;transition:all 0.15s;display:inline-flex;align-items:center;gap:8px}
+.btn-enquire:hover{border-color:#FF5000;color:#FF5000}
+.secure-note{display:flex;align-items:center;justify-content:center;gap:6px;font-size:12px;color:#444;margin-top:1rem}
+.secure-note i{font-size:14px;color:#555}
+footer{border-top:1px solid #1a1a1a;padding:2rem 1.5rem;text-align:center}
+.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:3px;margin-bottom:8px}
+.footer-logo span{color:#FF5000}
+footer p{font-size:13px;color:#444}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">RAY'S <span>COACHING</span></a>
+  <a href="index.html#services" class="back-btn"><i class="ti ti-arrow-left" aria-hidden="true"></i> Back to plans</a>
+</nav>
+
+<div class="hero">
+  <div class="popular-badge">⚡ Most Popular</div>
+  <div class="hero-tag"><i class="ti ti-bolt" aria-hidden="true"></i> Pro Plan</div>
+  <h1>TRAIN LIKE<br><span>A PRO</span></h1>
+  
+  <p class="hero-sub">For those serious about results. Full coaching support, detailed programming and daily access to Ray — this is where real transformations happen.</p>
+</div>
+
+<div class="divider"></div>
+
+<section>
+  <div class="section-wrap">
+    <div class="section-tag">What's Included</div>
+    <h2 class="section-title">EVERYTHING YOU GET</h2>
+    <div class="includes-grid">
+      <div class="include-card">
+        <div class="include-icon"><i class="ti ti-clipboard-list" aria-hidden="true"></i></div>
+        <div class="include-title">Custom 8-Week Training Plan</div>
+        <div class="include-desc">A detailed 8-week program that evolves as you progress — tailored to your goals and updated every month.</div>
+      </div>
+      <div class="include-card">
+        <div class="include-icon"><i class="ti ti-video" aria-hidden="true"></i></div>
+        <div class="include-title">Bi-Weekly Video Check-Ins</div>
+        <div class="include-desc">Face-to-face video calls every two weeks to review your progress, form and adjust the plan as needed.</div>
+      </div>
+      <div class="include-card">
+        <div class="include-icon"><i class="ti ti-meat" aria-hidden="true"></i></div>
+        <div class="include-title">Full Macro & Meal Plan</div>
+        <div class="include-desc">A complete nutrition plan with macros, meal ideas and guidance to fuel your training and maximise results.</div>
+      </div>
+      <div class="include-card">
+        <div class="include-icon"><i class="ti ti-brand-instagram" aria-hidden="true"></i></div>
+        <div class="include-title">Daily DM Support</div>
+        <div class="include-desc">DM Ray on Instagram (@ray_fitness07) or TikTok (@big_ray_fitness_page) every day — form checks, motivation, questions. You're never training alone.</div>
+      </div>
+      <div class="include-card">
+        <div class="include-icon"><i class="ti ti-refresh" aria-hidden="true"></i></div>
+        <div class="include-title">Monthly Plan Adjustments</div>
+        <div class="include-desc">Your program gets updated every month based on your progress so you're always moving forward.</div>
+      </div>
+      <div class="include-card">
+        <div class="include-icon"><i class="ti ti-chart-line" aria-hidden="true"></i></div>
+        <div class="include-title">Progress Tracking</div>
+        <div class="include-desc">Regular check-ins on your stats, strength and body composition so you can see exactly how far you've come.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section>
+  <div class="section-wrap">
+    <div class="section-tag">Who It's For</div>
+    <h2 class="section-title">THIS PLAN IS IDEAL IF YOU...</h2>
+    <div class="ideal-list">
+      <div class="ideal-item"><i class="ti ti-circle-check" aria-hidden="true"></i> Have some training experience and are ready to level up</div>
+      <div class="ideal-item"><i class="ti ti-circle-check" aria-hidden="true"></i> Want a coach who's with you every step of the way</div>
+      <div class="ideal-item"><i class="ti ti-circle-check" aria-hidden="true"></i> Are serious about hitting a specific goal — weight loss, muscle, performance</div>
+      <div class="ideal-item"><i class="ti ti-circle-check" aria-hidden="true"></i> Want full nutrition support alongside your training</div>
+      <div class="ideal-item"><i class="ti ti-circle-check" aria-hidden="true"></i> Need daily accountability to stay consistent</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section>
+  <div class="section-wrap">
+    <div class="cta-box">
+      <h2>LET'S TALK</h2>
+      <p>Interested in the Pro Plan? Fill in an enquiry and Ray will be in touch within 24 hours to discuss your goals and put together the perfect plan.</p>
+      <div class="cta-btns">
+        
+        <a href="index.html#booking" class="btn-pay">
+          Enquire Now <i class="ti ti-message" aria-hidden="true"></i>
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">RAY'S <span>COACHING</span></div>
+  <p>© 2026 Ray's Coaching · Brisbane, Australia</p>
+</footer>
+
+</body>
+</html>
