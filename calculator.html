@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calorie Calculator — Ray's Fitness</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Barlow',sans-serif;background:#0a0a0a;color:#fff;min-height:100vh;}
+
+nav{display:flex;align-items:center;justify-content:space-between;padding:1.2rem 2rem;border-bottom:1px solid #1e1e1e;}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:2px;color:#fff;text-decoration:none;}
+.nav-logo span{color:#FF5000;}
+.nav-back{display:flex;align-items:center;gap:6px;color:#aaa;font-size:14px;text-decoration:none;transition:color 0.2s;}
+.nav-back:hover{color:#FF5000;}
+
+.hero{text-align:center;padding:3rem 1.5rem 1rem;}
+.hero-tag{display:inline-block;background:#FF5000;color:#fff;font-size:12px;font-weight:700;letter-spacing:3px;padding:6px 16px;border-radius:4px;margin-bottom:1rem;text-transform:uppercase;}
+.hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,6vw,4rem);letter-spacing:3px;line-height:1;margin-bottom:0.5rem;}
+.hero h1 span{color:#FF5000;}
+.hero p{color:#aaa;font-size:15px;max-width:480px;margin:0 auto;}
+
+.card{background:#111;border:1px solid #1e1e1e;border-radius:12px;padding:2rem;position:relative;overflow:hidden;max-width:700px;margin:2rem auto;}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#FF5000,#ff8c00,transparent);}
+
+.section-label{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#666;margin-bottom:12px;}
+
+.slider-row{display:flex;align-items:center;gap:16px;margin-bottom:2rem;}
+.slider-row input[type=range]{flex:1;-webkit-appearance:none;appearance:none;height:4px;border-radius:9999px;background:#222;outline:none;}
+.slider-row input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:#FF5000;cursor:pointer;}
+.slider-val{font-size:20px;font-weight:700;min-width:70px;text-align:right;color:#fff;}
+
+.goal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:2rem;}
+.goal-btn{padding:14px 8px;border:1px solid #2a2a2a;border-radius:10px;background:#0a0a0a;cursor:pointer;font-size:13px;font-weight:600;color:#888;text-align:center;transition:all 0.15s;font-family:'Barlow',sans-serif;}
+.goal-btn i{display:block;font-size:22px;margin-bottom:6px;}
+.goal-btn.active{border:2px solid #FF5000;color:#FF5000;background:#130800;}
+.goal-btn:hover:not(.active){border-color:#444;color:#ccc;}
+
+.results-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:1.5rem;}
+.result-card{background:#0a0a0a;border:1px solid #1e1e1e;border-radius:10px;padding:1rem;text-align:center;}
+.result-card.highlight{border:2px solid #FF5000;background:#130800;}
+.result-label{font-size:11px;color:#666;margin-bottom:4px;letter-spacing:1px;text-transform:uppercase;}
+.result-val{font-size:24px;font-weight:700;color:#fff;}
+.result-card.highlight .result-val{color:#FF5000;}
+.result-sub{font-size:11px;color:#555;margin-top:3px;}
+
+.macro-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:1rem;}
+.macro-card{background:#0a0a0a;border:1px solid #1e1e1e;border-radius:10px;padding:1rem;text-align:center;}
+.macro-label{font-size:11px;color:#666;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;}
+.macro-val{font-size:20px;font-weight:700;color:#fff;}
+.macro-sub{font-size:11px;color:#555;margin-top:2px;}
+
+.bar-wrap{height:8px;background:#1a1a1a;border-radius:9999px;overflow:hidden;margin-bottom:10px;}
+.bar-inner{display:flex;height:100%;border-radius:9999px;overflow:hidden;}
+
+.legend{display:flex;gap:16px;font-size:12px;color:#666;margin-bottom:1.5rem;}
+.legend span{display:flex;align-items:center;gap:5px;}
+.dot{width:10px;height:10px;border-radius:2px;display:inline-block;}
+
+.tip-box{background:#0a0a0a;border-left:3px solid #FF5000;border-radius:0 8px 8px 0;padding:14px 18px;font-size:14px;color:#aaa;line-height:1.6;}
+
+.divider{border:none;border-top:1px solid #1e1e1e;margin:1.5rem 0;}
+
+footer{text-align:center;padding:2rem;color:#333;font-size:13px;}
+footer span{color:#FF5000;}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">RAY'S <span>FITNESS</span></a>
+  <a href="index.html" class="nav-back"><i class="ti ti-arrow-left"></i> Back to site</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-tag">Free Tool</div>
+  <h1>CALORIE <span>CALCULATOR</span></h1>
+  <p>Find your daily calorie and macro targets based on your bodyweight and goal.</p>
+</div>
+
+<div class="card">
+
+  <div class="section-label">Your bodyweight</div>
+  <div class="slider-row">
+    <input type="range" min="40" max="150" value="80" step="1" id="weight-slider">
+    <div class="slider-val" id="weight-out">80 kg</div>
+  </div>
+
+  <div class="section-label">Your goal</div>
+  <div class="goal-grid">
+    <button class="goal-btn" id="btn-lose" onclick="setGoal('lose')">
+      <i class="ti ti-trending-down" aria-hidden="true"></i>Lose fat
+    </button>
+    <button class="goal-btn active" id="btn-maintain" onclick="setGoal('maintain')">
+      <i class="ti ti-equal" aria-hidden="true"></i>Maintain
+    </button>
+    <button class="goal-btn" id="btn-gain" onclick="setGoal('gain')">
+      <i class="ti ti-trending-up" aria-hidden="true"></i>Build muscle
+    </button>
+  </div>
+
+  <div class="section-label">Daily calorie targets</div>
+  <div class="results-grid">
+    <div class="result-card">
+      <div class="result-label">Maintenance</div>
+      <div class="result-val" id="val-maint">2640</div>
+      <div class="result-sub">calories/day</div>
+    </div>
+    <div class="result-card highlight">
+      <div class="result-label" id="label-target">Your target</div>
+      <div class="result-val" id="val-target">2640</div>
+      <div class="result-sub" id="sub-target">calories/day</div>
+    </div>
+    <div class="result-card">
+      <div class="result-label" id="label-diff">Difference</div>
+      <div class="result-val" id="val-diff">0</div>
+      <div class="result-sub">vs maintenance</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="section-label">Recommended macros</div>
+  <div class="macro-grid">
+    <div class="macro-card">
+      <div class="macro-label">Protein</div>
+      <div class="macro-val" id="val-protein">160g</div>
+      <div class="macro-sub" id="sub-protein">640 cal</div>
+    </div>
+    <div class="macro-card">
+      <div class="macro-label">Carbs</div>
+      <div class="macro-val" id="val-carbs">264g</div>
+      <div class="macro-sub" id="sub-carbs">1056 cal</div>
+    </div>
+    <div class="macro-card">
+      <div class="macro-label">Fats</div>
+      <div class="macro-val" id="val-fats">105g</div>
+      <div class="macro-sub" id="sub-fats">945 cal</div>
+    </div>
+  </div>
+
+  <div class="bar-wrap">
+    <div class="bar-inner">
+      <div id="bar-p" style="background:#FF5000;transition:width 0.3s;"></div>
+      <div id="bar-c" style="background:#ff8c00;transition:width 0.3s;"></div>
+      <div id="bar-f" style="background:#ffc080;transition:width 0.3s;"></div>
+    </div>
+  </div>
+  <div class="legend">
+    <span><span class="dot" style="background:#FF5000;"></span>Protein</span>
+    <span><span class="dot" style="background:#ff8c00;"></span>Carbs</span>
+    <span><span class="dot" style="background:#ffc080;"></span>Fats</span>
+  </div>
+
+  <div class="tip-box" id="tip-box">
+    At maintenance, your body weight stays stable. This is your baseline — adjust up or down based on your goal.
+  </div>
+
+</div>
+
+<footer>Built by <span>Ray's Fitness</span> — Brisbane, Australia</footer>
+
+<script>
+let goal = 'maintain';
+const tips = {
+  lose: "A 400 cal deficit creates steady fat loss of around 0.5kg per week. Keep protein high to preserve muscle while cutting.",
+  maintain: "At maintenance, your body weight stays stable. This is your baseline — adjust up or down based on your goal.",
+  gain: "A 250 cal surplus supports lean muscle growth without excess fat gain. Train hard and let the calories fuel your progress."
+};
+
+function setGoal(g) {
+  goal = g;
+  ['lose','maintain','gain'].forEach(x => document.getElementById('btn-'+x).classList.remove('active'));
+  document.getElementById('btn-'+g).classList.add('active');
+  update();
+}
+
+function update() {
+  const w = parseInt(document.getElementById('weight-slider').value);
+  document.getElementById('weight-out').textContent = w + ' kg';
+  const maint = Math.round(w * 33);
+  let target, diff, label, sub;
+  if (goal === 'lose') { target = maint - 400; diff = -400; label = 'Deficit target'; sub = '~0.5kg loss/week'; }
+  else if (goal === 'gain') { target = maint + 250; diff = +250; label = 'Surplus target'; sub = 'lean bulk'; }
+  else { target = maint; diff = 0; label = 'Your target'; sub = 'weight stable'; }
+
+  document.getElementById('val-maint').textContent = maint.toLocaleString();
+  document.getElementById('val-target').textContent = target.toLocaleString();
+  document.getElementById('label-target').textContent = label;
+  document.getElementById('sub-target').textContent = sub;
+  document.getElementById('val-diff').textContent = (diff >= 0 ? '+' : '') + diff;
+  document.getElementById('tip-box').textContent = tips[goal];
+
+  const protein = Math.round(w * 2);
+  const proteinCal = protein * 4;
+  const fatCal = Math.round(target * 0.25);
+  const fats = Math.round(fatCal / 9);
+  const carbCal = target - proteinCal - fatCal;
+  const carbs = Math.round(Math.max(0, carbCal) / 4);
+
+  document.getElementById('val-protein').textContent = protein + 'g';
+  document.getElementById('sub-protein').textContent = proteinCal + ' cal';
+  document.getElementById('val-carbs').textContent = carbs + 'g';
+  document.getElementById('sub-carbs').textContent = Math.max(0, carbCal) + ' cal';
+  document.getElementById('val-fats').textContent = fats + 'g';
+  document.getElementById('sub-fats').textContent = fatCal + ' cal';
+
+  const total = proteinCal + Math.max(0, carbCal) + fatCal;
+  document.getElementById('bar-p').style.width = Math.round(proteinCal/total*100) + '%';
+  document.getElementById('bar-c').style.width = Math.round(Math.max(0,carbCal)/total*100) + '%';
+  document.getElementById('bar-f').style.width = Math.round(fatCal/total*100) + '%';
+}
+
+document.getElementById('weight-slider').addEventListener('input', update);
+update();
+</script>
+</body>
+</html>
